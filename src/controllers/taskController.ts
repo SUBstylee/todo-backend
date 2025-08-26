@@ -10,6 +10,22 @@ export const getTasks = async (req: Request, res: Response) => {
 	}
 };
 
+export const getTaskById = async (req: Request, res: Response) => {
+	const { id } = req.params;
+
+	try {
+		const task = await prisma.task.findUnique({
+			where: { id: Number(id) },
+		});
+
+		if (!task) return res.status(404).json({ error: 'Task not found' });
+
+		res.status(200).json(task);
+	} catch (error) {
+		res.status(500).json({ error: 'Failed to fetch task' });
+	}
+};
+
 export const createTask = async (req: Request, res: Response) => {
 	const { title, color = '#fff' } = req.body;
 
