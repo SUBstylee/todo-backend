@@ -9,3 +9,18 @@ export const getTasks = async (req: Request, res: Response) => {
 		res.status(500).json({ error: 'Failed to fetch tasks' });
 	}
 };
+
+export const updateTask = async (req: Request, res: Response) => {
+	const { id } = req.params;
+	const { title, color, completedStatus } = req.body;
+
+	try {
+		const updatedTask = await prisma.task.update({
+			where: { id: Number(id) },
+			data: { title, color, completedStatus },
+		});
+		res.status(200).json(updatedTask);
+	} catch (error) {
+		res.status(500).json({ error: 'Failed to update task' });
+	}
+};
