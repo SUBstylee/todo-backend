@@ -24,3 +24,14 @@ export const updateTask = async (req: Request, res: Response) => {
 		res.status(500).json({ error: 'Failed to update task' });
 	}
 };
+
+export const deleteTask = async (req: Request, res: Response) => {
+	const { id } = req.params;
+
+	try {
+		await prisma.task.delete({ where: { id: Number(id) } });
+		res.status(204).send();
+	} catch (error) {
+		res.status(500).json({ error: 'Failed to delete task' });
+	}
+};
