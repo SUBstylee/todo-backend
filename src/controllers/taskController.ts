@@ -10,6 +10,19 @@ export const getTasks = async (req: Request, res: Response) => {
 	}
 };
 
+export const createTask = async (req: Request, res: Response) => {
+	const { title, color = '#fff' } = req.body;
+
+	try {
+		const newTask = await prisma.task.create({
+			data: { title, color, completedStatus: false },
+		});
+		res.status(201).json(newTask);
+	} catch (error) {
+		res.status(500).json({ error: 'Failed to create task' });
+	}
+};
+
 export const updateTask = async (req: Request, res: Response) => {
 	const { id } = req.params;
 	const { title, color, completedStatus } = req.body;
