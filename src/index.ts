@@ -1,16 +1,21 @@
-import express from 'express';
+import express, { type Request, type Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-// come back to this when setting up REST api
-// import taskRoutes from './routes/tasks.js';
+import taskRoutes from './routes/tasks.js';
 
 dotenv.config();
+
 const app = express();
-app.use(cors());
+const PORT = process.env.PORT || 5001;
+const CORS_ORIGIN = process.env.CORS_ORIGIN || 'http://localhost:3000';
+
+app.use(
+	cors({
+		origin: CORS_ORIGIN,
+		methods: ['GET', 'POST', 'PUT', 'DELETE'],
+		allowedHeaders: ['Content-Type'],
+	}),
+);
 app.use(express.json());
-
-// come back to this when setting up REST api
-// app.use('/tasks', taskRoutes);
-
-const PORT = process.env.PORT || 4000;
+app.use('/tasks', taskRoutes);
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
