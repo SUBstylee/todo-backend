@@ -4,9 +4,11 @@ const prisma = new PrismaClient();
 
 async function main() {
 	const tasks = [
-		{ title: 'Buy groceries', color: '#FF3C30', completedStatus: false },
+		{ title: 'Put out fire', color: '#FF3C30', completedStatus: false },
 		{ title: 'Finish project report', color: '#0C7AFF', completedStatus: true },
-		{ title: 'Call Mom', color: '#FFCC00', completedStatus: false },
+		{ title: '???', color: '#0C7AFF', completedStatus: false },
+		{ title: 'Eat breakfast', color: '#FFCC00', completedStatus: false },
+		{ title: 'Drink water', color: '#FFCC00', completedStatus: false },
 	];
 
 	for (const task of tasks) {
