@@ -19,8 +19,10 @@ app.use(
 app.use(express.json());
 app.use('/tasks', taskRoutes);
 
-if (require.main === module) {
-	app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+if (process.argv[1]?.endsWith('index.ts')) {
+	app.listen(PORT, () => {
+		console.log(`Server running on port ${PORT}`);
+	});
 }
 
 export default app;
