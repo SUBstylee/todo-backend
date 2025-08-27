@@ -2,43 +2,30 @@
 	"compilerOptions": {
 		"allowJs": true,
 		"resolveJsonModule": true,
-
-		// File Layout
 		"outDir": "./dist",
 		"rootDir": "./src",
-
-		// Environment Settings
-		"module": "NodeNext",
-		"moduleResolution": "NodeNext",
+		"module": "ESNext",
+		"moduleResolution": "Node",
 		"target": "ES2022",
-		"types": [],
+		"types": ["node", "jest"],
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
-
-		// Other Outputs
 		"sourceMap": true,
 		"declaration": true,
 		"declarationMap": true,
-
-		// Stricter Typechecking Options
 		"noUncheckedIndexedAccess": true,
 		"exactOptionalPropertyTypes": true,
-
-		// Style Options
-		// "noImplicitReturns": true,
-		// "noImplicitOverride": true,
-		// "noUnusedLocals": true,
-		// "noUnusedParameters": true,
-		// "noFallthroughCasesInSwitch": true,
-		// "noPropertyAccessFromIndexSignature": true,
-
-		// Recommended Options
 		"strict": true,
-		"jsx": "react-jsx",
 		"verbatimModuleSyntax": true,
 		"isolatedModules": true,
 		"noUncheckedSideEffectImports": true,
 		"moduleDetection": "force",
-		"skipLibCheck": true
-	}
+		"skipLibCheck": true,
+		"baseUrl": "./src",
+		"paths": {
+			"@/*": ["*"]
+		}
+	},
+	"include": ["src"],
+	"exclude": ["node_modules", "dist", "jest.config.cjs"]
 }
